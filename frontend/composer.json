@@ -1,0 +1,19 @@
+{
+    "name": "app/cinetech",
+    "description": "App cinetech - student project - La Plateforme Formation Toulon",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\Cinetech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jean-ely.gendrau",
+            "email": "jean-ely.gendrau@laplateforme.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

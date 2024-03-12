@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: ./images/nginx/
+    volumes:
+      - nginx_conf:/etc/nginx/
+      - ./frontend:/www
+      - ./docker_data/nginx_conf:/etc/nginx/conf.d
+      - ./docker_data/php_conf/ini:/usr/local/etc/php/conf.d
+    # Port ajouté
+    ports:
+      - "80:80"
+      # Port 81 mappé
+      - "81:81"
+
+  php:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    hostname: cinetech.dok
+    volumes:
+      - ./frontend:/www
+
+  node:
+    build: ./images/node/
+    env_file: ./backend/.env
+    volumes:
+      - ./backend:/www
+
+volumes:
+  nginx_conf:

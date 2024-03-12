@@ -1,0 +1,5 @@
+/node/modules/
+.git
+.vscode
+.env
+.env.config
