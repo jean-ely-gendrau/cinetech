@@ -15,5 +15,8 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "altorouter/altorouter": "dev-master",
+        "guzzlehttp/guzzle": "7.9.x-dev"
+    }
 }

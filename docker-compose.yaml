@@ -13,6 +13,9 @@ services:
       - "80:80"
       # Port 81 mappé
       - "81:81"
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.2
 
   php:
     build:
@@ -21,12 +24,26 @@ services:
     hostname: cinetech.dok
     volumes:
       - ./frontend:/www
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.3
 
   node:
+    hostname: api.cinetech.dok
     build: ./images/node/
     env_file: ./backend/.env
     volumes:
       - ./backend:/www
-
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.4
 volumes:
   nginx_conf:
+
+networks:
+  custom_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

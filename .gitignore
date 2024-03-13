@@ -1,5 +1,6 @@
 /frontend/vendor
 ./frontend/package-lock.json
-./frontend/composer-lock.lock
+/frontend/composer-lock.lock
 /backend/.env
 /backend/node_modules
+/node_modules/
