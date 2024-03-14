@@ -1,1 +1,0 @@
-<h1>Les Séries</h1>

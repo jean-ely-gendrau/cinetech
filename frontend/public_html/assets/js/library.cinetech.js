@@ -2,6 +2,7 @@ var cineTech = {};
 
 // CINETECH SYSTEM
 cineTech.sys = {
+  imagesBG: [],
   elems: [], // Tableau pour sauvegarder tous les éléments trouvés par les fonctions getById, getByClass
   // Récupère tous les éléments par ID
   // Peut prendre plus d'un paramètre
@@ -16,7 +17,28 @@ cineTech.sys = {
     this.elems = tempElems; // Tous les éléments sont copiés dans la propriété elems
     return this; // Renvoie this dans l'ordre d'appel
   },
-
+  getBySelector: function () {
+    var tempElems = []; // tableau temporaire pour sauvegarder les éléments trouvés
+    for (var i = 0; i < arguments.length; i++) {
+      if (typeof arguments[i] === "string") {
+        // Vérifie que le paramètre est une chaine
+        tempElems.push(document.querySelector(arguments[i])); // Ajoute l'élément à tempElems
+      }
+    }
+    this.elems = tempElems; // Tous les éléments sont copiés dans la propriété elems
+    return this; // Renvoie this dans l'ordre d'appel
+  },
+  getBySelectorAll: function () {
+    var tempElems = []; // tableau temporaire pour sauvegarder les éléments trouvés
+    for (var i = 0; i < arguments.length; i++) {
+      if (typeof arguments[i] === "string") {
+        // Vérifie que le paramètre est une chaine
+        tempElems.push(document.querySelectorAll(arguments[i])); // Ajoute l'élément à tempElems
+      }
+    }
+    this.elems = tempElems; // Tous les éléments sont copiés dans la propriété elems
+    return this; // Renvoie this dans l'ordre d'appel
+  },
   // Ajoute une nouvelle classe à un élément
   // Cela ne supprime pas les autres classes, elle en ajoute simplement une nouvelle
   addClass: function (name) {
@@ -25,7 +47,14 @@ cineTech.sys = {
     }
     return this; // Renvoie this dans l'ordre d'appel
   },
-
+  delClass: function (name) {
+    for (var i = 0; i < this.elems.length; i++) {
+      if (this.elems[i].classList.contains(name)) {
+        this.elems[i].classList.remove(name); // retire la class
+      }
+    }
+    return this; // Renvoie this dans l'ordre d'appel
+  },
   // Ajoute un événement aux éléments trouvés par la méthode : getById et getByClass
   //-- Action est un type d'événement comme 'click', 'mouseover', 'mouseout', etc.
   //-- Callback est la fonction à exécuter lorsque l'événement est déclenché
@@ -65,6 +94,19 @@ cineTech.sys = {
     }
     return this; // Renvoie this dans l'ordre d'appel
   },
+  loadLazyImg: function () {
+    let imagesToLoad = document.querySelectorAll("img[data-src]");
+    const loadImages = (image) => {
+      image.setAttribute("src", image.getAttribute("data-src"));
+      image.onload = () => {
+        image.removeAttribute("data-src");
+      };
+    };
+    imagesToLoad.forEach((img) => {
+      this.imagesBG.push(img.getAttribute("data-src"));
+      loadImages(img);
+    });
+  },
 };
 
 cineTech.request = {
@@ -94,7 +136,101 @@ cineTech.request = {
     });
   },
 };
+
+cineTech.images = {
+  createBG: function () {
+    /* Taille de votre image*/
+    var canvas = document.getElementById("canvas");
+    var pWidth = canvas.width;
+    var pHeight = canvas.height;
+
+    var imgs = cineTech.sys.getBySelectorAll("img[data-src]");
+    //create an image
+    var img = new Image();
+    img.src = cineTech.sys.imagesBG[1];
+
+    img.onload = function () {
+      for (var i = 1; i < 4; i++) {
+        var ctx = canvas.getContext("2d");
+        var img = new Image();
+        img.src = cineTech.sys.imagesBG[i];
+
+        var iWidth = img.width;
+        var iHeight = img.height;
+
+        //ON prend le plus faible ratio
+        var iRatioWidth = img.width / (pWidth / 2);
+        if (i == 2) {
+          //L'image du milieu est un peu plus large  que les autres
+          iRatioWidth = img.width / ((pWidth * 4) / 6);
+        }
+        var iRatioHeight = img.height / pHeight;
+        var iRatio = iRatioWidth;
+        if (iRatioHeight < iRatio) {
+          iRatio = iRatioHeight;
+        }
+
+        ctx.save();
+
+        //define the polygon
+        ctx.beginPath();
+        switch (i) {
+          case 1:
+            ctx.moveTo(0, 0);
+            ctx.lineTo(pWidth / 2, 0);
+            ctx.lineTo((pWidth * 1) / 6, pHeight);
+            ctx.lineTo(0, pHeight);
+
+            //draw the image
+            ctx.clip();
+            ctx.drawImage(img, 0, 0, img.width / iRatio, img.height / iRatio);
+            break;
+          case 2:
+            ctx.moveTo((pWidth * 1) / 6, pHeight);
+            ctx.lineTo((pWidth * 5) / 6, pHeight);
+            ctx.lineTo(pWidth / 2, 0);
+
+            //draw the image
+            ctx.clip();
+            ctx.drawImage(
+              img,
+              (pWidth * 1) / 6,
+              0,
+              img.width / iRatio,
+              img.height / iRatio
+            );
+            break;
+          case 3:
+            ctx.moveTo(pWidth / 2, 0);
+            ctx.lineTo((pWidth * 5) / 6, pHeight);
+            ctx.lineTo(pWidth, pHeight);
+            ctx.lineTo(pWidth, 0);
+
+            //draw the image
+            ctx.clip();
+            ctx.drawImage(
+              img,
+              pWidth / 2,
+              0,
+              img.width / iRatio,
+              img.height / iRatio
+            );
+            break;
+        }
+
+        ctx.closePath();
+        //fill and stroke are still available for overlays and borders
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#cccccc";
+        ctx.stroke(); //Contour
+        ctx.restore();
+      }
+    };
+  },
+};
 // LOAD MODULE
 if (typeof module != "undefined" && module.exports) {
   module.exports = cineTech;
 }
+
+cineTech.sys.loadLazyImg();

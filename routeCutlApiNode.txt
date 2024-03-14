@@ -1,0 +1,374 @@
+# GET /
+curl -X GET "votre_url_ici"
+
+# GET /api/auth/guest_session/new
+curl -X GET "votre_url_ici/api/auth/guest_session/new"
+
+# GET /api/auth/token/new
+curl -X GET "votre_url_ici/api/auth/token/new"
+
+# POST /api/auth/session/new
+curl -X POST "votre_url_ici/api/auth/session/new"
+
+# POST /api/auth/token/login
+curl -X POST "votre_url_ici/api/auth/token/login"
+
+# DELETE /api/auth/delete/session
+curl -X DELETE "votre_url_ici/api/auth/delete/session"
+
+# GET /api/auth
+curl -X GET "votre_url_ici/api/auth"
+
+# GET /api/certification/movie/list
+curl -X GET "votre_url_ici/api/certification/movie/list"
+
+# GET /api/certification/tv/list
+curl -X GET "votre_url_ici/api/certification/tv/list"
+
+# GET /api/movie/changes
+curl -X GET "votre_url_ici/api/movie/changes"
+
+# GET /api/person/changes
+curl -X GET "votre_url_ici/api/person/changes"
+
+# GET /api/tv/changes
+curl -X GET "votre_url_ici/api/tv/changes"
+
+# GET /api/collection/details
+curl -X GET "votre_url_ici/api/collection/details"
+
+# GET /api/collection/images
+curl -X GET "votre_url_ici/api/collection/images"
+
+# GET /api/collection/translations
+curl -X GET "votre_url_ici/api/collection/translations"
+
+# GET /api/company
+curl -X GET "votre_url_ici/api/company"
+
+# GET /api/company/alternative_names
+curl -X GET "votre_url_ici/api/company/alternative_names"
+
+# GET /api/company/images
+curl -X GET "votre_url_ici/api/company/images"
+
+# GET /api/config/details
+curl -X GET "votre_url_ici/api/config/details"
+
+# GET /api/config/countries
+curl -X GET "votre_url_ici/api/config/countries"
+
+# GET /api/config/jobs
+curl -X GET "votre_url_ici/api/config/jobs"
+
+# GET /api/config/trans/primary
+curl -X GET "votre_url_ici/api/config/trans/primary"
+
+# GET /api/config/timezones
+curl -X GET "votre_url_ici/api/config/timezones"
+
+# GET /api/credit
+curl -X GET "votre_url_ici/api/credit"
+
+# GET /api/movie/discover
+curl -X GET "votre_url_ici/api/movie/discover"
+
+# GET /api/movie/list
+curl -X GET "votre_url_ici/api/movie/list"
+
+# GET /api/find
+curl -X GET "votre_url_ici/api/find"
+
+# GET /genre/movie/list
+curl -X GET "votre_url_ici/genre/movie/list"
+
+# GET /genre/tv/list
+curl -X GET "votre_url_ici/genre/tv/list"
+
+# GET /api/guest/session/related/movies
+curl -X GET "votre_url_ici/api/guest/session/related/movies"
+
+# GET /api/guest/session/related/tv
+curl -X GET "votre_url_ici/api/guest/session/related/tv"
+
+# GET /api/guest/session/related/tv/episodes
+curl -X GET "votre_url_ici/api/guest/session/related/tv/episodes"
+
+# GET /api/keyword
+curl -X GET "votre_url_ici/api/keyword"
+
+# GET /api/keyword/movies
+curl -X GET "votre_url_ici/api/keyword/movies"
+
+# POST /api/list/add/movie
+curl -X POST "votre_url_ici/api/list/add/movie"
+
+# GET /api/list/check/items/status
+curl -X GET "votre_url_ici/api/list/check/items/status"
+
+# GET /api/list/clear
+curl -X GET "votre_url_ici/api/list/clear"
+
+# POST /api/list/create
+curl -X POST "votre_url_ici/api/list/create"
+
+# DELETE /api/list/delete
+curl -X DELETE "votre_url_ici/api/list/delete"
+
+# GET /api/list/remove/movie
+curl -X GET "votre_url_ici/api/list/remove/movie"
+
+# GET /api/movie/now
+curl -X GET "votre_url_ici/api/movie/now"
+
+# GET /api/movie/popular
+curl -X GET "votre_url_ici/api/movie/popular"
+
+# GET /api/movie/top/rated
+curl -X GET "votre_url_ici/api/movie/top/rated"
+
+# GET /api/movie/upcoming
+curl -X GET "votre_url_ici/api/movie/upcoming"
+
+# GET /api/movie
+curl -X GET "votre_url_ici/api/movie"
+
+# GET /api/movie/alternative/title
+curl -X GET "votre_url_ici/api/movie/alternative/title"
+
+# GET /api/movie/change
+curl -X GET "votre_url_ici/api/movie/change"
+
+# GET /api/movie/credits
+curl -X GET "votre_url_ici/api/movie/credits"
+
+# GET /api/movie/external/id
+curl -X GET "votre_url_ici/api/movie/external/id"
+
+# GET /api/movie/images
+curl -X GET "votre_url_ici/api/movie/images"
+
+# GET /api/movie/keywords
+curl -X GET "votre_url_ici/api/movie/keywords"
+
+# GET /api/movie/latest
+curl -X GET "votre_url_ici/api/movie/latest"
+
+# GET /api/movie/lists
+curl -X GET "votre_url_ici/api/movie/lists"
+
+# GET /api/movie/recommendations
+curl -X GET "votre_url_ici/api/movie/recommendations"
+
+# GET /api/movie/release/dates
+curl -X GET "votre_url_ici/api/movie/release/dates"
+
+# GET /api/movie/similar
+curl -X GET "votre_url_ici/api/movie/similar"
+
+# GET /api/movie/translations
+curl -X GET "votre_url_ici/api/movie/translations"
+
+# GET /api/movie/videos
+curl -X GET "votre_url_ici/api/movie/videos"
+
+# GET /api/movie/watch/providers
+curl -X GET "votre_url_ici/api/movie/watch/providers"
+
+# POST /api/movie/add/rating
+curl -X POST "votre_url_ici/api/movie/add/rating"
+
+# DELETE /api/movie/delete/rating
+curl -X DELETE "votre_url_ici/api/movie/delete/rating"
+
+# GET /api/network/details
+curl -X GET "votre_url_ici/api/network/details"
+
+# GET /api/network/alternative/names
+curl -X GET "votre_url_ici/api/network/alternative/names"
+
+# GET /api/network/images
+curl -X GET "votre_url_ici/api/network/images"
+
+# GET /api/person/details
+curl -X GET "votre_url_ici/api/person/details"
+
+# GET /api/person/changes
+curl -X GET "votre_url_ici/api/person/changes"
+
+# GET /api/person/combined/credits
+curl -X GET "votre_url_ici/api/person/combined/credits"
+
+# GET /api/person/external/id
+curl -X GET "votre_url_ici/api/person/external/id"
+
+# GET /api/person/images
+curl -X GET "votre_url_ici/api/person/images"
+
+# GET /api/person/latest
+curl -X GET "votre_url_ici/api/person/latest"
+
+# GET /api/person/movie/credits
+curl -X GET "votre_url_ici/api/person/movie/credits"
+
+# GET /api/person/tv/credits
+curl -X GET "votre_url_ici/api/person/tv/credits"
+
+# GET /api/person/tagged/images
+curl -X GET "votre_url_ici/api/person/tagged/images"
+
+# GET /api/person/translations
+curl -X GET "votre_url_ici/api/person/translations"
+
+# GET /api/person/popular
+curl -X GET "votre_url_ici/api/person/popular"
+
+# GET /api/find
+curl -X GET "votre_url_ici/api/find"
+
+# GET /api/search/collection
+curl -X GET "votre_url_ici/api/search/collection"
+
+# GET /api/search/company
+curl -X GET "votre_url_ici/api/search/company"
+
+# GET /api/search/keyword
+curl -X GET "votre_url_ici/api/search/keyword"
+
+# GET /api/search/movie
+curl -X GET "votre_url_ici/api/search/movie"
+
+# GET /api/search/person
+curl -X GET "votre_url_ici/api/search/person"
+
+# GET /api/search/tv
+curl -X GET "votre_url_ici/api/search/tv"
+
+# GET /api/tv/episode/group
+curl -X GET "votre_url_ici/api/tv/episode/group"
+
+# GET /api/trending/all
+curl -X GET "votre_url_ici/api/trending/all"
+
+# GET /api/trending/movies
+curl -X GET "votre_url_ici/api/trending/movies"
+
+# GET /api/trending/people
+curl -X GET "votre_url_ici/api/trending/people"
+
+# GET /api/trending/tv
+curl -X GET "votre_url_ici/api/trending/tv"
+
+# GET /api/tv/series/season/details
+curl -X GET "votre_url_ici/api/tv/series/season/details"
+
+# GET /api/tv/series/season/account_states
+curl -X GET "votre_url_ici/api/tv/series/season/account_states"
+
+# GET /api/tv/series/season/aggregate_credits
+curl -X GET "votre_url_ici/api/tv/series/season/aggregate_credits"
+
+# GET /api/tv/series/season/changes
+curl -X GET "votre_url_ici/api/tv/series/season/changes"
+
+# GET /api/tv/series/season/credits
+curl -X GET "votre_url_ici/api/tv/series/season/credits"
+
+# GET /api/tv/series/season/external_ids
+curl -X GET "votre_url_ici/api/tv/series/season/external_ids"
+
+# GET /api/tv/series/season/translations
+curl -X GET "votre_url_ici/api/tv/series/season/translations"
+
+# POST /api/tv/series/season/add/rating
+curl -X POST "votre_url_ici/api/tv/series/season/add/rating"
+
+# DELETE /api/tv/series/season/add/rating
+curl -X DELETE "votre_url_ici/api/tv/series/season/add/rating"
+
+# GET /api/tv/series/details
+curl -X GET "votre_url_ici/api/tv/series/details"
+
+# GET /api/tv/series/account_states
+curl -X GET "votre_url_ici/api/tv/series/account_states"
+
+# GET /api/tv/series/aggregate_credits
+curl -X GET "votre_url_ici/api/tv/series/aggregate_credits"
+
+# GET /api/tv/series/alternative_titles
+curl -X GET "votre_url_ici/api/tv/series/alternative_titles"
+
+# GET /api/tv/series/changes
+curl -X GET "votre_url_ici/api/tv/series/changes"
+
+# GET /api/tv/series/content_ratings
+curl -X GET "votre_url_ici/api/tv/series/content_ratings"
+
+# GET /api/tv/series/credits
+curl -X GET "votre_url_ici/api/tv/series/credits"
+
+# GET /api/tv/series/episode_groups
+curl -X GET "votre_url_ici/api/tv/series/episode_groups"
+
+# GET /api/tv/series/external_ids
+curl -X GET "votre_url_ici/api/tv/series/external_ids"
+
+# GET /api/tv/series/images
+curl -X GET "votre_url_ici/api/tv/series/images"
+
+# GET /api/tv/series/keywords
+curl -X GET "votre_url_ici/api/tv/series/keywords"
+
+# GET /api/tv/series/latest
+curl -X GET "votre_url_ici/api/tv/series/latest"
+
+# GET /api/tv/series/lists
+curl -X GET "votre_url_ici/api/tv/series/lists"
+
+# GET /api/tv/series/recommendations
+curl -X GET "votre_url_ici/api/tv/series/recommendations"
+
+# GET /api/tv/series/reviews
+curl -X GET "votre_url_ici/api/tv/series/reviews"
+
+# GET /api/tv/series/screened_theatrically
+curl -X GET "votre_url_ici/api/tv/series/screened_theatrically"
+
+# GET /api/tv/series/similar
+curl -X GET "votre_url_ici/api/tv/series/similar"
+
+# GET /api/tv/series/translations
+curl -X GET "votre_url_ici/api/tv/series/translations"
+
+# GET /api/tv/series/videos
+curl -X GET "votre_url_ici/api/tv/series/videos"
+
+# GET /api/tv/series/watch/providers
+curl -X GET "votre_url_ici/api/tv/series/watch/providers"
+
+# POST /api/tv/series/add/rating
+curl -X POST "votre_url_ici/api/tv/series/add/rating"
+
+# DELETE /api/tv/series/add/delete
+curl -X DELETE "votre_url_ici/api/tv/series/add/delete"
+
+# GET /api/tv/series/lists/airing_today
+curl -X GET "votre_url_ici/api/tv/series/lists/airing_today"
+
+# GET /api/tv/series/lists/on_the_air
+curl -X GET "votre_url_ici/api/tv/series/lists/on_the_air"
+
+# GET /api/tv/series/lists/popular
+curl -X GET "votre_url_ici/api/tv/series/lists/popular"
+
+# GET /api/tv/series/lists/top_rated
+curl -X GET "votre_url_ici/api/tv/series/lists/top_rated"
+
+# GET /api/watc/providers/regions
+curl -X GET "votre_url_ici/api/watc/providers/regions"
+
+# GET /api/watc/providers/movie
+curl -X GET "votre_url_ici/api/watc/providers/movie"
+
+# GET /api/watc/providers/tv
+curl -X GET "votre_url_ici/api/watc/providers/tv"

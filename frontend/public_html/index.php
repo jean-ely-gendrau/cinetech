@@ -8,8 +8,9 @@ $router = new AltoRouter();
 
 // Route MAP
 $router->map('GET', '/', "HomeTemplate#index");
-$router->map('GET', '/serie', 'serie', 'serie');
-$router->map('GET', '/film', 'film', 'film');
+$router->map('GET', '/serie', 'SeriesTemplate#index', 'serie');
+$router->map('GET', '/film', 'VideoTemplate#index', 'film');
+$router->map('GET', '/film/[*:slug]-[i:id]', 'DetailsTemplate#videos', 'details-film');
 $router->map('GET', '/contact', 'contact', 'contact');
 $router->map('GET', '/blog/[*:slug]-[i:id]', 'blog/article', 'article');
 
@@ -34,7 +35,7 @@ if (is_array($match)) {
     $controller = class_exists($controller) ? new $controller : false;
 
     if (is_callable(array($controller, $action))) {
-      call_user_func_array(array($controller, $action), array($match['params']));
+      call_user_func_array(array($controller, $action), $match['params']);
     } else {
       echo "error";
     }

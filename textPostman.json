@@ -1,0 +1,1374 @@
+{
+    "info": {
+        "_postman_id": "unique_postman_id",
+        "name": "API CineTech DB",
+        "description": "CineTech DB - Project de formation La Plateforme, utilisant l'API TMDB",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Obtenir une session invité",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth/guest_session/new",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth",
+                        "guest_session",
+                        "new"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir un nouveau jeton",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth/token/new",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth",
+                        "token",
+                        "new"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Créer une nouvelle session",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth/session/new",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth",
+                        "session",
+                        "new"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Se connecter avec un jeton",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth/token/login",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth",
+                        "token",
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Supprimer une session",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth/delete/session",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth",
+                        "delete",
+                        "session"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir des informations d'authentification",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/auth",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "auth"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir la liste des films certifiés",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/certification/movie/list",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "certification",
+                        "movie",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir la liste des émissions de télévision certifiées",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/certification/tv/list",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "certification",
+                        "tv",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les changements de films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/changes",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "changes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les changements de personnes",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/person/changes",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "person",
+                        "changes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les changements de séries télévisées",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/changes",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "changes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les détails d'une collection",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/collection/details",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "collection",
+                        "details"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les images d'une collection",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/collection/images",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "collection",
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les traductions d'une collection",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/collection/translations",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "collection",
+                        "translations"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les informations d'une entreprise",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/company",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "company"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les noms alternatifs d'une entreprise",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/company/alternative_names",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "company",
+                        "alternative_names"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les images d'une entreprise",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/company/images",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "company",
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les détails de configuration",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/config/details",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "config",
+                        "details"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les pays de configuration",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/config/countries",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "config",
+                        "countries"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les emplois de configuration",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/config/jobs",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "config",
+                        "jobs"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les traductions principales de configuration",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/config/trans/primary",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "config",
+                        "trans",
+                        "primary"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les fuseaux horaires de configuration",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/config/timezones",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "config",
+                        "timezones"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les crédits d'un élément",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/credit",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "credit"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Découvrir des films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/discover",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "discover"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les listes de films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/list",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Rechercher des éléments",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/find",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "find"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir la liste des genres de films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/genre/movie/list",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "genre",
+                        "movie",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir la liste des genres de séries télévisées",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/genre/tv/list",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "genre",
+                        "tv",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les films liés à la session invité",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/guest/session/related/movies",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "guest",
+                        "session",
+                        "related",
+                        "movies"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les séries télévisées liées à la session invité",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/guest/session/related/tv",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "guest",
+                        "session",
+                        "related",
+                        "tv"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les épisodes de séries télévisées liés à la session invité",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/guest/session/related/tv/episodes",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "guest",
+                        "session",
+                        "related",
+                        "tv",
+                        "episodes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir un mot-clé spécifique",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/keyword",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "keyword"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les films associés à un mot-clé spécifique",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/keyword/movies",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "keyword",
+                        "movies"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Ajouter un film à une liste personnalisée",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/add/movie",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "add",
+                        "movie"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Vérifier le statut des éléments dans une liste personnalisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/check/items/status",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "check",
+                        "items",
+                        "status"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Effacer une liste personnalisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/clear",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "clear"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Créer une liste personnalisée",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/create",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "create"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Supprimer une liste personnalisée",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/delete",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "delete"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Retirer un film d'une liste personnalisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/list/remove/movie",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "list",
+                        "remove",
+                        "movie"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les films actuels",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/now",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "now"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les films populaires",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/popular",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "popular"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les films les mieux notés",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/top/rated",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "top",
+                        "rated"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les prochains films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/upcoming",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "upcoming"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les titres alternatifs d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/alternative/title",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "alternative",
+                        "title"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les changements d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/change",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "change"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les crédits d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/credits",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "credits"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les identifiants externes d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/external/id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "external",
+                        "id"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les images d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/images",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les mots-clés d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/keywords",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "keywords"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les listes associées à un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/lists",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "lists"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les recommandations de films pour un film donné",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/recommendations",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "recommendations"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les statistiques de collection d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/collection/stats",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "collection",
+                        "stats"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les vidéos d'un film",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/movie/videos",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "movie",
+                        "videos"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Rechercher des films",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/search/movie",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "search",
+                        "movie"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les informations d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/details",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "details"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les changements d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/change",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "change"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les crédits d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/credits",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "credits"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les identifiants externes d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/external/id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "external",
+                        "id"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les images d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/images",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "images"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les mots-clés d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/keywords",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "keywords"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les recommandations de séries télévisées pour une série donnée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/recommendations",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "recommendations"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les statistiques de collection d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/collection/stats",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "collection",
+                        "stats"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Obtenir les vidéos d'une série télévisée",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/tv/videos",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "tv",
+                        "videos"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Rechercher des séries télévisées",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                    "raw": "http://localhost:81/api/search/tv",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "81",
+                    "path": [
+                        "api",
+                        "search",
+                        "tv"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

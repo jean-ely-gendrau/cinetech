@@ -1,0 +1,370 @@
+curl -X GET "http://localhost:81/api/auth/guest_session/new"
+
+
+curl -X GET "http://localhost:81/api/auth/token/new"
+
+
+curl -X POST "http://localhost:81/api/auth/session/new"
+
+
+curl -X POST "http://localhost:81/api/auth/token/login"
+
+
+curl -X DELETE "http://localhost:81/api/auth/delete/session"
+
+
+curl -X GET "http://localhost:81/api/auth"
+
+
+curl -X GET "http://localhost:81/api/certification/movie/list"
+
+
+curl -X GET "http://localhost:81/api/certification/tv/list"
+
+
+curl -X GET "http://localhost:81/api/movie/changes"
+
+
+curl -X GET "http://localhost:81/api/person/changes"
+
+
+curl -X GET "http://localhost:81/api/tv/changes"
+
+
+curl -X GET "http://localhost:81/api/collection/details"
+
+
+curl -X GET "http://localhost:81/api/collection/images"
+
+
+curl -X GET "http://localhost:81/api/collection/translations"
+
+
+curl -X GET "http://localhost:81/api/company"
+
+
+curl -X GET "http://localhost:81/api/company/alternative_names"
+
+
+curl -X GET "http://localhost:81/api/company/images"
+
+
+curl -X GET "http://localhost:81/api/config/details"
+
+
+curl -X GET "http://localhost:81/api/config/countries"
+
+
+curl -X GET "http://localhost:81/api/config/jobs"
+
+
+curl -X GET "http://localhost:81/api/config/trans/primary"
+
+
+curl -X GET "http://localhost:81/api/config/timezones"
+
+
+curl -X GET "http://localhost:81/api/credit"
+
+
+curl -X GET "http://localhost:81/api/movie/discover"
+
+
+curl -X GET "http://localhost:81/api/movie/list"
+
+
+curl -X GET "http://localhost:81/api/find"
+
+
+curl -X GET "http://localhost:81/genre/movie/list"
+
+
+curl -X GET "http://localhost:81/genre/tv/list"
+
+
+curl -X GET "http://localhost:81/api/guest/session/related/movies"
+
+
+curl -X GET "http://localhost:81/api/guest/session/related/tv"
+
+
+curl -X GET "http://localhost:81/api/guest/session/related/tv/episodes"
+
+
+curl -X GET "http://localhost:81/api/keyword"
+
+
+curl -X GET "http://localhost:81/api/keyword/movies"
+
+
+curl -X POST "http://localhost:81/api/list/add/movie"
+
+
+curl -X GET "http://localhost:81/api/list/check/items/status"
+
+
+curl -X GET "http://localhost:81/api/list/clear"
+
+
+curl -X POST "http://localhost:81/api/list/create"
+
+
+curl -X DELETE "http://localhost:81/api/list/delete"
+
+
+curl -X GET "http://localhost:81/api/list/remove/movie"
+
+
+curl -X GET "http://localhost:81/api/movie/now"
+
+
+curl -X GET "http://localhost:81/api/movie/popular"
+
+
+curl -X GET "http://localhost:81/api/movie/top/rated"
+
+
+curl -X GET "http://localhost:81/api/movie/upcoming"
+
+
+curl -X GET "http://localhost:81/api/movie"
+
+
+curl -X GET "http://localhost:81/api/movie/alternative/title"
+
+
+curl -X GET "http://localhost:81/api/movie/change"
+
+
+curl -X GET "http://localhost:81/api/movie/credits"
+
+
+curl -X GET "http://localhost:81/api/movie/external/id"
+
+
+curl -X GET "http://localhost:81/api/movie/images"
+
+
+curl -X GET "http://localhost:81/api/movie/keywords"
+
+
+curl -X GET "http://localhost:81/api/movie/latest"
+
+
+curl -X GET "http://localhost:81/api/movie/lists"
+
+
+curl -X GET "http://localhost:81/api/movie/recommendations"
+
+
+curl -X GET "http://localhost:81/api/movie/release/dates"
+
+
+curl -X GET "http://localhost:81/api/movie/similar"
+
+
+curl -X GET "http://localhost:81/api/movie/translations"
+
+
+curl -X GET "http://localhost:81/api/movie/videos"
+
+
+curl -X GET "http://localhost:81/api/movie/watch/providers"
+
+
+curl -X POST "http://localhost:81/api/movie/add/rating"
+
+
+curl -X DELETE "http://localhost:81/api/movie/delete/rating"
+
+
+curl -X GET "http://localhost:81/api/network/details"
+
+
+curl -X GET "http://localhost:81/api/network/alternative/names"
+
+
+curl -X GET "http://localhost:81/api/network/images"
+
+
+curl -X GET "http://localhost:81/api/person/details"
+
+
+curl -X GET "http://localhost:81/api/person/changes"
+
+
+curl -X GET "http://localhost:81/api/person/combined/credits"
+
+
+curl -X GET "http://localhost:81/api/person/external/id"
+
+
+curl -X GET "http://localhost:81/api/person/images"
+
+
+curl -X GET "http://localhost:81/api/person/latest"
+
+
+curl -X GET "http://localhost:81/api/person/movie/credits"
+
+
+curl -X GET "http://localhost:81/api/person/tv/credits"
+
+
+curl -X GET "http://localhost:81/api/person/tagged/images"
+
+
+curl -X GET "http://localhost:81/api/person/translations"
+
+
+curl -X GET "http://localhost:81/api/person/popular"
+
+
+curl -X GET "http://localhost:81/api/find"
+
+
+curl -X GET "http://localhost:81/api/search/collection"
+
+
+curl -X GET "http://localhost:81/api/search/company"
+
+
+curl -X GET "http://localhost:81/api/search/keyword"
+
+
+curl -X GET "http://localhost:81/api/search/movie"
+
+
+curl -X GET "http://localhost:81/api/search/person"
+
+
+curl -X GET "http://localhost:81/api/search/tv"
+
+
+curl -X GET "http://localhost:81/api/tv/episode/group"
+
+
+curl -X GET "http://localhost:81/api/trending/all"
+
+
+curl -X GET "http://localhost:81/api/trending/movies"
+
+
+curl -X GET "http://localhost:81/api/trending/people"
+
+
+curl -X GET "http://localhost:81/api/trending/tv"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/details"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/account_states"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/aggregate_credits"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/changes"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/credits"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/external_ids"
+
+
+curl -X GET "http://localhost:81/api/tv/series/season/translations"
+
+
+curl -X POST "http://localhost:81/api/tv/series/season/add/rating"
+
+
+curl -X DELETE "http://localhost:81/api/tv/series/season/add/rating"
+
+
+curl -X GET "http://localhost:81/api/tv/series/details"
+
+
+curl -X GET "http://localhost:81/api/tv/series/account_states"
+
+
+curl -X GET "http://localhost:81/api/tv/series/aggregate_credits"
+
+
+curl -X GET "http://localhost:81/api/tv/series/alternative_titles"
+
+
+curl -X GET "http://localhost:81/api/tv/series/changes"
+
+
+curl -X GET "http://localhost:81/api/tv/series/content_ratings"
+
+
+curl -X GET "http://localhost:81/api/tv/series/credits"
+
+
+curl -X GET "http://localhost:81/api/tv/series/episode_groups"
+
+
+curl -X GET "http://localhost:81/api/tv/series/external_ids"
+
+
+curl -X GET "http://localhost:81/api/tv/series/images"
+
+
+curl -X GET "http://localhost:81/api/tv/series/keywords"
+
+
+curl -X GET "http://localhost:81/api/tv/series/latest"
+
+
+curl -X GET "http://localhost:81/api/tv/series/lists"
+
+
+curl -X GET "http://localhost:81/api/tv/series/recommendations"
+
+
+curl -X GET "http://localhost:81/api/tv/series/reviews"
+
+
+curl -X GET "http://localhost:81/api/tv/series/screened_theatrically"
+
+
+curl -X GET "http://localhost:81/api/tv/series/similar"
+
+
+curl -X GET "http://localhost:81/api/tv/series/translations"
+
+
+curl -X GET "http://localhost:81/api/tv/series/videos"
+
+
+curl -X GET "http://localhost:81/api/tv/series/watch/providers"
+
+
+curl -X POST "http://localhost:81/api/tv/series/add/rating"
+
+
+curl -X DELETE "http://localhost:81/api/tv/series/add/delete"
+
+
+curl -X GET "http://localhost:81/api/tv/series/lists/airing_today"
+
+
+curl -X GET "http://localhost:81/api/tv/series/lists/on_the_air"
+
+
+curl -X GET "http://localhost:81/api/tv/series/lists/popular"
+
+
+curl -X GET "http://localhost:81/api/tv/series/lists/top_rated"
+
+
+curl -X GET "http://localhost:81/api/watc/providers/regions"
+
+
+curl -X GET "http://localhost:81/api/watc/providers/movie"
+
+
+curl -X GET "http://localhost:81/api/watc/providers/tv"

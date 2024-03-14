@@ -142,29 +142,90 @@ class HomeTemplate extends HttpRequest
   public function index()
   {
     $srcImage = "https://image.tmdb.org/t/p/original/";
-    $resultMovie = self::requestGZ('api/movie/discover');
-
-    $page = "
-        <h1 class='text-base md:text-2xl mb-2'>Accueil CineTech La PlateForme</h1>
-
-        <p>Bienvenue sur le project de formation CineTech La Plateforme.</p>
-        ";
-
+    $resultMovie = self::requestGZ('api/movie/now');
+    $page = "<section class='flex flex-col justify-center items-center border-2 border-blue-950 rounded-3xl bg-gradient-to-r w-full h-80 from-blue-500 to-transparent'>";
+    $page .= " <h1 class='text-lg md:text-2xl mb-2'>Bienvenue,\r\n sur CineTech à la découverte de millions de films, émissions télévisées et artistes...</h1>";
+    $page =  nl2br($page);
+    $page .= "<input class='w-2/3 rounded-full h-10 p-4 text-sm md:text-lg' type='text' placeholder='Rechercher un film, série TV, épisodes, artistes ...' />";
+    $page .= "</section>";
     $object = json_decode($resultMovie);
 
-    $page .= "<section class='bg-gray-100 flex flex-row gap-x-5 max-w-none px-2 justify-start items-center overflow-x-auto'>";
+
+    $page .= "<section class='bg-gray-100 flex-col max-w-none'>";
+
+    $page .= "<h2 class='text-base md:text-2xl'>Les dernières Film</h2>";
+    $page .= "<div class='inline-flex rounded-lg shadow-sm'>
+                    <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:bg-gray-400 dark:focus:text-white'>
+                      Aujoud'hui
+                    </button>
+                    <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:bg-gray-400 dark:focus:text-white'>
+                      Cette Semaine
+                    </button>
+              </div>";
+
+    $page .= "<article class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
 
     foreach ($object->results as $iemMovie) :
-
+      $title = isset($iemMovie->original_title) ? $iemMovie->original_title : $iemMovie->name;
+      $date = isset($iemMovie->release_date) ? $iemMovie->release_date : "N/A";
       $page .= "
         <div class='flex items-center justify-center mx-auto w-[155px]'>
-          <div class='flex flex-col mx-auto bg-white rounded-b-3xl shadow-xl'>
-            <div class='rounded-3xl w-[150px] shadow-sm bg-slate-100 flex-col'>
-              <img
-                src='" . $srcImage . $iemMovie->backdrop_path . "'
-                load='lazy'
+          <div class='flex flex-col mx-auto '>
+            <div class='rounded-3xl w-[150px] shadow-sm flex-col'>
+            <img
+                src='./assets/images/placeholder.png'
+                data-src='" . $srcImage . $iemMovie->backdrop_path . "'
+                loading='lazy'
                 class='rounded-3xl justify-center h-[225px] w-[150px] grid object-cover'
-                alt='{$iemMovie->original_title}'
+                alt='{$title}'
+                />   
+              
+                <div class='flex-col p-4 grid z-10 text-left h-32 content-between'>
+                  <a
+                  href='./film/{$title}-{$iemMovie->id}'
+                  class='group-hover:text-cyan-700 font-semibold text-xs sm:text-[1em] line-clamp-3'
+                  >
+                    {$title}
+                  </a>
+                  <time class='text-slate-400 pt-2 font-semibold'>
+                    ({$date})
+                  </time>
+                </div>
+            </div>
+          </div> 
+        </div>";
+
+    endforeach;
+
+    $page .= "</article>";
+    $page .= "</section>";
+
+    /*
+    $resultMovieClip = self::requestGZ('api/movie/videos');
+    $objectSeriesMovieClip = json_decode($resultMovieClip);
+    var_dump($objectSeriesMovieClip);
+*/
+    $resultSeries = self::requestGZ('api/tv/series/lists/airing_today');
+    $objectSeries = json_decode($resultSeries);
+    $page .= "<section class='bg-gray-100 flex-col gap-x-5 max-w-none px-2'>";
+
+    $page .= "<h2 class='text-base md:text-2xl'>Les Séries TV du jour</h2>";
+
+    $page .= "<article class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
+
+    foreach ($objectSeries->results as $iemMovie) :
+      $title = isset($iemMovie->original_title) ? $iemMovie->original_title : $iemMovie->name;
+      $date = isset($iemMovie->release_date) ? $iemMovie->release_date : "N/A";
+      $page .= "
+        <div class='flex items-center justify-center mx-auto w-[155px]'>
+          <div class='flex flex-col mx-auto'>
+            <div class='rounded-3xl w-[150px] shadow-sm flex-col'>
+              <img
+                src='./assets/images/placeholder.png'
+                data-src='" . $srcImage . $iemMovie->backdrop_path . "'
+                loading='lazy'
+                class='rounded-3xl justify-center h-[225px] w-[150px] grid object-cover'
+                alt='{$title}'
                 /> 
               
                 <div class='group p-6 grid z-10 text-left'>
@@ -172,10 +233,10 @@ class HomeTemplate extends HttpRequest
                   href='#'
                   class='group-hover:text-cyan-700 font-semibold text-xs sm:text-[1em] line-clamp-2'
                   >
-                    {$iemMovie->original_title}
+                    {$title}
                   </a>
                   <span class='text-slate-400 pt-2 font-semibold'>
-                    ({$iemMovie->release_date})
+                    ({$date})
                   </span>
                 </div>
             </div>
@@ -184,6 +245,7 @@ class HomeTemplate extends HttpRequest
 
     endforeach;
 
+    $page .= "</article>";
     $page .= "</section>";
 
     echo $page;

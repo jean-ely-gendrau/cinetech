@@ -4,11 +4,12 @@ const { fetchApi } = require("../components/fetchApi");
 module.exports = function () {
   // Movie Details
   router.get("/api/movie", async (req, res) => {
-    fetchApi(req, res, "movie/movie_id?language=en-US");
+    console.log(req.query.movie_id);
+    fetchApi(req, res, `movie/${req.query.movie_id}?language=en-US`);
   });
 
   // Movie Account States
-  router.get("/api/movie", async (req, res) => {
+  router.get("/api/movie/account/states", async (req, res) => {
     fetchApi(req, res, "movie/movie_id/account_states");
   });
 
