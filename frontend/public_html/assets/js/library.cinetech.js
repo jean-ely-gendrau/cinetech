@@ -106,6 +106,7 @@ cineTech.sys = {
       this.imagesBG.push(img.getAttribute("data-src"));
       loadImages(img);
     });
+    return this;
   },
 };
 
@@ -125,6 +126,7 @@ cineTech.request = {
           .join("&"),
       }
     );
+    return this;
   },
   fetchApiNode: async function ({ endpoint, bodyParams, method = "POST" }) {
     const response = fetch(`http://localhost:81/${endpoint}`, {
@@ -134,10 +136,24 @@ cineTech.request = {
       },
       body: bodyParams ? JSON.stringify(bodyParams) : "{}",
     });
+    return this;
   },
 };
 
 cineTech.images = {
+  randNumber: [],
+  getNumber: function (index) {
+    return cineTech.images.randNumber(index);
+  },
+  getRandomInt: function (max) {
+    var rand = Math.floor(Math.random() * max);
+    if (!this.randNumber.includes(rand)) {
+      this.randNumber.push(rand);
+    } else {
+      arguments.callee(cineTech.sys.imagesBG.length);
+    }
+    return this;
+  },
   createBG: function () {
     /* Taille de votre image*/
     var canvas = document.getElementById("canvas");
@@ -146,14 +162,16 @@ cineTech.images = {
 
     var imgs = cineTech.sys.getBySelectorAll("img[data-src]");
     //create an image
-    var img = new Image();
-    img.src = cineTech.sys.imagesBG[1];
+    var imgs = new Image();
+    imgs.src = cineTech.sys.imagesBG[0];
 
-    img.onload = function () {
-      for (var i = 1; i < 4; i++) {
+    imgs.onload = function () {
+      for (var i = 1; i <= 3; i++) {
+        cineTech.images.getRandomInt(cineTech.sys.imagesBG.length);
         var ctx = canvas.getContext("2d");
         var img = new Image();
-        img.src = cineTech.sys.imagesBG[i];
+        console.log(cineTech.images.randNumber[i - 1]);
+        img.src = cineTech.sys.imagesBG[cineTech.images.randNumber[i - 1]];
 
         var iWidth = img.width;
         var iHeight = img.height;

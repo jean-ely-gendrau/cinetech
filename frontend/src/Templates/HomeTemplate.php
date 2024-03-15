@@ -141,7 +141,7 @@ class HomeTemplate extends HttpRequest
 
   public function index()
   {
-    $srcImage = "https://image.tmdb.org/t/p/original/";
+    $srcImage = "https://image.tmdb.org/t/p/original";
     $resultMovie = self::requestGZ('api/movie/now');
     $page = "<section class='flex flex-col justify-center items-center border-2 border-blue-950 rounded-3xl bg-gradient-to-r w-full h-80 from-blue-500 to-transparent'>";
     $page .= " <h1 class='text-lg md:text-2xl mb-2'>Bienvenue,\r\n sur CineTech à la découverte de millions de films, émissions télévisées et artistes...</h1>";

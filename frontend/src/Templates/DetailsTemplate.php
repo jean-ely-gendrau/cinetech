@@ -8,7 +8,7 @@ class DetailsTemplate extends HttpRequest
 {
   public function videos($slug, $id)
   {
-    echo '<script type="module">cineTech.sys.getById("content-main").delClass("md:min-w-2xl").addClass("md:min-w-full");</script>';
+    echo '<script type="module">cineTech.sys.getById("content-main").delClass("md:min-w-2xl").delClass("md:mx-auto").delClass("mx-2").addClass("md:min-w-full");</script>';
 
     //  var_dump($slug, $id);
     $srcImage = "https://image.tmdb.org/t/p/original";
@@ -16,13 +16,8 @@ class DetailsTemplate extends HttpRequest
 
     $object = json_decode($resultMovie);
     // echo '<pre>', var_dump($object), '</pre>';
-    $page = "
-        <h1 class='text-base md:text-2xl mb-2'>Détails </h1>
-        ";
 
-
-
-    $page .= "<section class='bg-gray-100 flex flex-row flex-wrap gap-5 max-w-none mx-2 justify-center items-center'>";
+    $page = "<section class='bg-gray-100 flex flex-row flex-wrap gap-5 max-w-none justify-center items-center'>";
 
     // foreach ($object as $object) :
     //var_dump($object);
@@ -30,14 +25,17 @@ class DetailsTemplate extends HttpRequest
     $date = isset($object->release_date) ? $object->release_date : "N/A";
 
     $page .=
-      "<div class='flex items-center justify-center mx-auto min-w-full'>
-          <div class='flex flex-col h-fit mx-auto bg-white rounded-3xl shadow-xl'>
-            <div class='grid rounded-3xl shadow-sm bg-slate-100 flex-col'>
+      "<div class='relative flex items-center justify-center min-w-full'>
+            <div class='absolute inset-0 flex flex-col'>
+              <h1 class='text-base md:text-4xl z-10 mb-2 text-blue-950'>$title</h1>
+            </div>
+          <div class='flex flex-col h-fit bg-white rounded-e-3xl shadow-xl min-w-full'>
+            <div class='grid rounded-e-3xl shadow-sm bg-slate-100 flex-col'>
               <img
                 src='./assets/images/placeholder.png'
                 data-src='" . $srcImage . $object->backdrop_path . "'
                 loading='lazy'
-                class='rounded-t-3xl justify-center grid object-cover'
+                class='opacity-40 min-w-full h-[500px] -z10 justify-center grid object-content'
                 alt='{$title}'
                 /> 
               

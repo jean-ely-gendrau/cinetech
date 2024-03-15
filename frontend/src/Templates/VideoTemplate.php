@@ -8,7 +8,7 @@ class VideoTemplate extends HttpRequest
 {
   public function index()
   {
-    $srcImage = "https://image.tmdb.org/t/p/original/";
+    $srcImage = "https://image.tmdb.org/t/p/original";
     $resultMovie = self::requestGZ('api/movie/discover');
 
     $page = "

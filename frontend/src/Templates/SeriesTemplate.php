@@ -9,24 +9,23 @@ class SeriesTemplate extends HttpRequest
 {
   public function index()
   {
-    $srcImage = "https://image.tmdb.org/t/p/original/";
+    $srcImage = "https://image.tmdb.org/t/p/original";
     $resultMovie = self::requestGZ('api/tv/series/lists/airing_today');
 
-    echo "
-      <canvas id='canvas' width='900' height='300'>
-      
-      </canvas>
-
-      <script type='module'>
-          cineTech.images.createBG();
-      </script>
-    ";
     // echo CreateBackGround::createBG($tempImg);
-    $page = "
-        <h1 class='text-base md:text-2xl mb-2'>Accueil CineTech La PlateForme</h1>
+    $page = "<div class='flex relative max-w-none mx-2'>
+              <div class='absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 class='text-base md:text-8xl z-10 mb-2'>Tout le divertissement</h1>
 
-        <p>Bienvenue sur le project de formation CineTech La Plateforme.</p>
-        ";
+                <p class='text-base md:text-6xl'>Les Séries TV</p>
+              </div>
+              <canvas class='-z-10 min-w-full opacity-30' id='canvas' width='900' height='300'>
+
+              </canvas>
+            </div> 
+            ";
+
+
 
     $object = json_decode($resultMovie);
 
@@ -94,7 +93,11 @@ class SeriesTemplate extends HttpRequest
     endforeach;
 
     $page .= "</section>";
-
+    $page .= "
+    <script type='module'>
+        cineTech.images.createBG();
+    </script>
+  ";
     echo $page;
   }
 }
