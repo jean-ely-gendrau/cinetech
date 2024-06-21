@@ -9,6 +9,7 @@ RUN apk update && apk upgrade && apk add \
   icu-dev \
   libpq-dev \
   libpng-dev \
+  jpeg-dev \
   openssl \
   curl-dev \
   zip \
@@ -23,6 +24,7 @@ RUN apk update && apk upgrade && apk add \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-install bz2 && docker-php-ext-enable bz2 \
   && docker-php-ext-install curl && docker-php-ext-enable curl \
+  && docker-php-ext-configure gd --with-jpeg \
   && docker-php-ext-install gd && docker-php-ext-enable gd \
   && docker-php-ext-install intl && docker-php-ext-enable intl \
   && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
@@ -47,10 +49,14 @@ COPY ./composer.json composer.json
 RUN composer install --no-scripts --no-autoloader --no-dev
 
 # copy project files
-COPY . .
+#COPY . .
 
 # change public path to html
-RUN cp -R ./public_html/* ./html
+#RUN cp -R ./public_html/* ./www/html
 
 # generate autoload files
 RUN composer dump-autoload --optimize
+
+#RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+#RUN chmod +x tailwindcss-linux-x64
+#RUN mv tailwindcss-linux-x64 /etc/tailwindcss

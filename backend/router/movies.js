@@ -5,7 +5,11 @@ module.exports = function () {
   // Movie Details
   router.get("/api/movie", async (req, res) => {
     console.log(req.query.movie_id);
-    fetchApi(req, res, `movie/${req.query.movie_id}?language=en-US`);
+    fetchApi(
+      req,
+      res,
+      `movie/${req.query.movie_id}?language=fr-FR&region=fr&append_to_response=videos,images,similar,recommendations,credits`
+    );
   });
 
   // Movie Account States

@@ -4,7 +4,11 @@ const { fetchApi } = require("../components/fetchApi");
 module.exports = function () {
   // TV Series Details
   router.get("/api/tv/series/details", async (req, res) => {
-    fetchApi(req, res, "tv/series_id?language=en-US");
+    fetchApi(
+      req,
+      res,
+      `tv/${req.query.series_id}?language=fr-FR&region=fr&append_to_response=videos,images,similar,recommendations,credits`
+    );
   });
 
   // TV Series Account States

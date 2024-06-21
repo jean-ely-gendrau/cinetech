@@ -4,18 +4,46 @@ namespace App\Cinetech\Templates;
 
 use App\Cinetech\Components\HttpRequest;
 
+
+
 class VideoTemplate extends HttpRequest
 {
-  public function index()
+  /**
+   * route
+   *
+   * @var array
+   */
+  public $route;
+
+  public function __construct()
   {
+    $this->route = [
+      "/film" => "/api/movie/popular",
+      "/film/now" => "/api/movie/now",
+      "/film/upcoming" => "/api/movie/upcoming",
+      "/film/top-rated" => "/api/movie/top/rated",
+    ];
+  }
+
+  public function index(...$arguments)
+  {
+    var_dump($arguments);
     $srcImage = "https://image.tmdb.org/t/p/original";
-    $resultMovie = self::requestGZ('api/movie/discover');
+    $resultMovie = self::requestGZ($this->route[$arguments['uri']]);
 
-    $page = "
-        <h1 class='text-base md:text-2xl mb-2'>Accueil CineTech La PlateForme</h1>
+    if (!$resultMovie) return false; // Error Request
 
-        <p>Bienvenue sur le project de formation CineTech La Plateforme.</p>
-        ";
+    $imageBG = self::requestGZ('/api/g/images');
+
+    $page = "<div class='flex relative max-w-none mx-2'>
+              <div class='absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 class='text-base md:text-8xl z-10 mb-2 text-shadow shadow-black'>Tout le divertissement</h1>
+
+                <p class='text-base md:text-6xl text-shadow shadow-black'>Les Films</p>
+              </div>
+              <img class='-z-10 rounded-3xl opacity-75 object-cover w-full' src={$imageBG} />;
+            </div> 
+            ";
 
     $object = json_decode($resultMovie);
 
@@ -35,7 +63,7 @@ class VideoTemplate extends HttpRequest
                 width='250'
                 height='200'
                 loading='lazy'
-                class='rounded-t-3xl justify-center grid h-80 object-cover'
+                class='shadow-md rounded-t-3xl justify-center grid h-80 object-cover'
                 alt='{$title}'
                 /> 
               
@@ -81,8 +109,6 @@ class VideoTemplate extends HttpRequest
 
     endforeach;
 
-    $page .= "</section>";
-
-    echo $page;
+    return $page;
   }
 }

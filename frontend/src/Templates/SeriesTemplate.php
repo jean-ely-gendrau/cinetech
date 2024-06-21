@@ -3,25 +3,44 @@
 namespace App\Cinetech\Templates;
 
 use App\Cinetech\Components\HttpRequest;
-use App\Cinetech\Components\CreateBackGround;
+//use App\Cinetech\Components\CreateBackGround;
 
 class SeriesTemplate extends HttpRequest
 {
-  public function index()
+  /**
+   * route
+   *
+   * @var array
+   */
+  public $route;
+
+  public function __construct()
   {
+    $this->route = [
+      "/series" => "/api/tv/series/lists/popular",
+      "/series/airing-today" => "/api/tv/series/lists/airing_today",
+      "/series/top-rated" => "/api/tv/series/lists/top_rated",
+      "/series/on-the-air" => "/api/tv/series/lists/on_the_air",
+    ];
+  }
+  public function index(...$arguments)
+  {
+
     $srcImage = "https://image.tmdb.org/t/p/original";
-    $resultMovie = self::requestGZ('api/tv/series/lists/airing_today');
+    $resultMovie = self::requestGZ($this->route[$arguments['uri']]);
+
+    if (!$resultMovie) return false; // Error Request
+
+    $imageBG = self::requestGZ('/api/g/images/bg');
 
     // echo CreateBackGround::createBG($tempImg);
     $page = "<div class='flex relative max-w-none mx-2'>
               <div class='absolute inset-0 flex flex-col items-center justify-center'>
-                <h1 class='text-base md:text-8xl z-10 mb-2'>Tout le divertissement</h1>
+                <h1 class='text-base md:text-8xl z-10 mb-2 text-shadow shadow-black'>Tout le divertissement</h1>
 
-                <p class='text-base md:text-6xl'>Les Séries TV</p>
+                <p class='text-base md:text-6xl text-shadow shadow-black'>Les Séries TV</p>
               </div>
-              <canvas class='-z-10 min-w-full opacity-30' id='canvas' width='900' height='300'>
-
-              </canvas>
+             <img class='-z-10 rounded-3xl opacity-75 object-cover w-full' src={$imageBG} />;
             </div> 
             ";
 
@@ -31,11 +50,15 @@ class SeriesTemplate extends HttpRequest
 
     $page .= "<section class='bg-gray-100 flex flex-row flex-wrap gap-5 max-w-none mx-2 justify-center items-center'>";
     $tempImg = [];
-    foreach ($object->results as $iemMovie) :
+
+    foreach ($object->results as $key => $iemMovie) :
+
+      $isActionCount = 7;
       $title = isset($iemMovie->original_title) ? $iemMovie->original_title : $iemMovie->name;
       $date = isset($iemMovie->release_date) ? $iemMovie->release_date : "N/A";
       $images = $srcImage . $iemMovie->backdrop_path;
       array_push($tempImg, $images);
+
       $page .=
         "<div class='flex items-center justify-center mx-auto max-w-[250px]'>
           <div class='flex flex-col h-fit mx-auto bg-white rounded-3xl shadow-xl'>
@@ -46,7 +69,7 @@ class SeriesTemplate extends HttpRequest
                 width='250'
                 height='200'
                 loading='lazy'
-                class='rounded-t-3xl justify-center grid h-80 object-cover'
+                class='shadow-md rounded-t-3xl justify-center grid h-80 object-cover'
                 alt='{$title}'
                 /> 
               
@@ -90,14 +113,13 @@ class SeriesTemplate extends HttpRequest
           </div>
         </div>";
 
+      if ($key  === $isActionCount || $key === count($object->results) - 1) {
+        $page .= "<img class='rounded-3xl opacity-75 object-cover w-full' src=" . self::requestGZ('/api/g/images') . " />";
+        $isActionCount += 7;
+      }
+
     endforeach;
 
-    $page .= "</section>";
-    $page .= "
-    <script type='module'>
-        cineTech.images.createBG();
-    </script>
-  ";
-    echo $page;
+    return $page;
   }
 }

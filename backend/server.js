@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 //require("dotenv").config(); // Load environment variables
 
 const app = express();
@@ -10,7 +11,8 @@ app.get("/", (req, res) => {
   res.sendFile("index.php", { root: __dirname });
 });
 */
-const fs = require("fs");
+app.use("/static", express.static("images/"));
+app.use("/static/bg", express.static("images/bg"));
 /* backslash for windows, in unix it would be forward slash */
 const routes_directory = require("path").resolve(__dirname) + "/router/";
 

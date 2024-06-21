@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  db:
+    image: mariadb:10.6
+    restart: always
+    environment:
+      MYSQL_DATABASE: cinetech
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - ./docker_data/db-data/data:/var/lib/mysql
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.5
+
+  nginx:
+    build: ./images/nginx/
+    volumes:
+      - nginx_conf:/etc/nginx/
+      - ./frontend:/www
+      - ./docker_data/nginx_conf:/etc/nginx/conf.d
+      - ./docker_data/php_conf/ini:/usr/local/etc/php/conf.d
+    # Port ajouté
+    ports:
+      - "80:80"
+      # Port 81 mappé
+      - "81:81"
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.2
+
+  php:
+    depends_on:
+      - db
+    image: cinetech:latest
+    volumes:
+      - ./frontend:/www
+    #command: ln -s /etc/tailwindcss /usr/bin/tailwindcss
+    #command: ./tailwindcss -i ./assets/tailwindcss.css -o ./public_html/assets/styles/global.css --watch
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.3
+    links:
+      - db:db
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin:latest
+    ports:
+      - "8899:80"
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    links:
+      - db:db
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.6
+
+  node:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file: ./backend/.env
+    volumes:
+      - ./backend:/www
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.4
+
+volumes:
+  nginx_conf:
+
+networks:
+  custom_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

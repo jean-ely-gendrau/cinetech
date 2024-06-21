@@ -1,0 +1,5 @@
+/frontend/vendor/
+/node_modules/
+.git
+/SQL/
+.README.md

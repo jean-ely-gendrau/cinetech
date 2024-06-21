@@ -108,6 +108,44 @@ cineTech.sys = {
     });
     return this;
   },
+  loadLazyJS: function () {
+    let jsToLoad = document.querySelectorAll("*[data-js]");
+
+    jsToLoad.forEach((dataElement) => {
+      cineTech.sys.elems.push(dataElement);
+      console.log(dataElement.getAttribute("data-js").split(",")[0]);
+      cineTech.sys.on(
+        dataElement.getAttribute("data-js").split(",")[1],
+        eval(cineTech.action[dataElement.getAttribute("data-js").split(",")[0]])
+      );
+      dataElement.removeAttribute("data-js");
+      cineTech.sys.elems.pop();
+    });
+    return this;
+  },
+  darkMode: function () {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = "light";
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = "dark";
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem("theme");
+
+    return this;
+  },
 };
 
 cineTech.request = {
@@ -246,9 +284,32 @@ cineTech.images = {
     };
   },
 };
+
+cineTech.action = {
+  handelScrollX: (e) => {
+    var elemScrollX = e.target.getAttribute("data-scroll-x");
+    var direction = e.target.getAttribute("data-direction-scroll");
+    if (elemScrollX && direction) {
+      var elementScroll = document.getElementById(elemScrollX);
+      direction === "r"
+        ? (elementScroll.scrollLeft += 355) // scroll to rigth
+        : (elementScroll.scrollLeft += -355); // scoll to left
+    }
+  },
+  getScrollXelements: function (element) {
+    console.log(this);
+    let elements = document.getElementById(element);
+    if (elements) {
+      let button =
+        '<div class="z-10 bg-black"><button id="slideL" onclick="alert(\'ok\')" type="button">Slide left</button><button id="slideR" type="button">Slide right</button><div>';
+      elements.innerHTML += button;
+    }
+  },
+};
 // LOAD MODULE
 if (typeof module != "undefined" && module.exports) {
   module.exports = cineTech;
 }
 
-cineTech.sys.loadLazyImg();
+cineTech.sys.loadLazyImg().darkMode();
+cineTech.sys.loadLazyJS();

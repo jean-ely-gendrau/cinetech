@@ -1,5 +1,11 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "flowbite": "^2.3.0"
+  },
+  "scripts": {
+    "start": "npx tailwindcss -i ./frontend/assets/tailwindcss.css -o ./frontend/public_html/assets/styles/global.css --watch"
   }
 }

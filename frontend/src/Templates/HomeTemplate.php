@@ -2,7 +2,9 @@
 
 namespace App\Cinetech\Templates;
 
+use App\Cinetech\Components\CineTechHtmlElement;
 use App\Cinetech\Components\HttpRequest;
+
 
 class HomeTemplate extends HttpRequest
 {
@@ -10,6 +12,8 @@ class HomeTemplate extends HttpRequest
   {
     $srcImage = "https://image.tmdb.org/t/p/original/";
     $resultMovie = self::requestGZ('api/movie/discover');
+
+    if (!$resultMovie) return false; // Error request
 
     $page = "
         <h1 class='text-base md:text-2xl mb-2'>Accueil CineTech La PlateForme</h1>
@@ -60,13 +64,15 @@ class HomeTemplate extends HttpRequest
 
     $page .= "</section>";
 
-    echo $page;
+    return $page;
   }
 
   public function indexB()
   {
     $srcImage = "https://image.tmdb.org/t/p/original/";
     $resultMovie = self::requestGZ('api/movie/discover');
+
+    if (!$resultMovie) return false; // Error Request
 
     $page = "
         <h1 class='text-base md:text-2xl mb-2'>Accueil CineTech La PlateForme</h1>
@@ -136,35 +142,133 @@ class HomeTemplate extends HttpRequest
 
     $page .= "</section>";
 
-    echo $page;
+    return $page;
+  }
+  public function decodePng($data)
+  {
+    // Création du blob
+    $blob = new \stdClass();
+    $blob->buffer = $data;
+    $blob->type = 'application/octet-binary';
+
+    // Création d'un fichier temporaire
+    $tempFile = tempnam(sys_get_temp_dir(), 'image');
+    file_put_contents($tempFile, $blob->buffer);
+
+    // Renvoi de l'URL du fichier temporaire
+    $link = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI'])  . basename($tempFile);
+
+    // Utilisation de l'URL pour l'image
+    return '<img src="' . $link . '" />';
+  }
+  public function decodeImg($data)
+  {
+    // Création du blob
+    $blob = new \stdClass();
+    $blob->buffer = $data;
+    $blob->type = 'application/octet-binary';
+
+    // Création de l'URL
+    $link = 'data:application/octet-binary;base64,' . base64_encode($blob->buffer);
+
+    // Création de l'image
+    $img = imagecreatefromstring($blob->buffer);
+
+    // Affichage de l'image (ou autre traitement)
+    ob_start();
+    // header('Content-Type: image/png'); // Adapter le type MIME selon le type d'image
+    $imgs = imagepng($img);
+
+    // Libération de la mémoire
+    //imagedestroy($img);
+    return $imgs;
   }
 
-  public function index()
+  public function headerHtml(string $srcImage, string $altImage, string $title)
   {
+    return "
+    <div class='flex flex-col justify-between mt-4 bg-black/10 bg-blend-multiply rounded-3xl h-80 overflow-hidden bg-cover bg-center px-7 pt-4 pb-6 text-white'
+                    style='background-image: url({$srcImage});' >
+                    <span class='sr-only'>Image d'entête' du film {$altImage}</span>
+                    <!-- <img class='object-cover w-full h-full' src='{$srcImage}' alt='{$altImage}'> -->
+                  
+                    
+                    <div class='bg-gradient-to-r from-black/30 to-transparent -mx-7 -mb-6 px-7 pb-6 pt-2'>
+                        <span class='uppercase text-3xl font-semibold drop-shadow-lg '>{$title}</span>
+                        <div class='text-xs text-gray-200 mt-2'>
+                            <a href='#' class=''>Action</a>,
+                            <a href='#' class=''>Adventure</a>,
+                            <a href='#' class=''>Sci-Fi</a>
+                        </div>
+                        <div class='mt-4 flex space-x-3 items-center'>
+                            <a href='#' class='px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-lg text-xs inline-block'>Regarder</a>
+                            <a href='#' class='p-2.5 bg-gray-800/80 rounded-lg hover:bg-red-600'>
+                                <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' viewBox='0 0 20 20' fill='currentColor'>
+                                    <path fill-rule='evenodd' d='M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z' clip-rule='evenodd' />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>";
+  }
+  public function index(...$arguments)
+  {
+    //var_dump($arguments);
     $srcImage = "https://image.tmdb.org/t/p/original";
-    $resultMovie = self::requestGZ('api/movie/now');
-    $page = "<section class='flex flex-col justify-center items-center border-2 border-blue-950 rounded-3xl bg-gradient-to-r w-full h-80 from-blue-500 to-transparent'>";
-    $page .= " <h1 class='text-lg md:text-2xl mb-2'>Bienvenue,\r\n sur CineTech à la découverte de millions de films, émissions télévisées et artistes...</h1>";
-    $page =  nl2br($page);
-    $page .= "<input class='w-2/3 rounded-full h-10 p-4 text-sm md:text-lg' type='text' placeholder='Rechercher un film, série TV, épisodes, artistes ...' />";
-    $page .= "</section>";
+    $resultMovie = self::requestGZ('/api/movie/now');
+
+    if (!$resultMovie) return false; // Error Request
+
+    $imageBG = self::requestGZ('/api/g/images/bg');
     $object = json_decode($resultMovie);
+    /*
+    $dom = new DOMDocument();
+    $dom->loadHTML($object->canvas->htmlElement);
 
 
-    $page .= "<section class='bg-gray-100 flex-col max-w-none'>";
 
-    $page .= "<h2 class='text-base md:text-2xl'>Les dernières Film</h2>";
-    $page .= "<div class='inline-flex rounded-lg shadow-sm'>
-                    <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:bg-gray-400 dark:focus:text-white'>
-                      Aujoud'hui
-                    </button>
-                    <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:bg-gray-400 dark:focus:text-white'>
-                      Cette Semaine
-                    </button>
-              </div>";
+    $result = $dom->saveHTML();
+    var_dump($result);
+*/
+    //var_dump($object->canvas);
+    $page = "<section id='headerElement' class='relative flex flex-col justify-center text-white items-center rounded-3xl bg-gradient-to-e w-full h-auto bg-gradient-to-b from-black/50 from-75%  to-transparent'>";
+    $page .= "<div class='absolute inset-0 flex flex-col items-center justify-center'>";
+    $page .= " <h1 class='text-base md:text-6xl mb-8 px-4 text-shadow-md shadow-black font-medium'>Bienvenue, sur CineTech</h1>";
+    $page .= "<p class='text-base md:text-2xl text-shadow-md shadow-black mb-2 font-extralight'>à la découverte de millions de films, émissions télévisées et artistes...</p>";
+    $page .= "<input class='w-2/3 rounded-full h-10 p-4 text-sm md:text-lg' type='text' placeholder='Rechercher un film, série TV, épisodes, artistes ...' />";
+    $page .= "</div>";
 
-    $page .= "<article class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
+    //$page .= self::decodePng(base64_decode($object->canvas));
+    $page .= "<img class='-z-10 rounded-3xl opacity-75 object-cover w-full' src={$imageBG} />";
+    /*
+    $page .= "<canvas class='-z-10 min-w-full opacity-50' id='canvas' width='900' height='300'>
 
+              </canvas>";
+              */
+    $page .= "</section>";
+
+    // $page .= "<section class='bg-gray-100 flex-col max-w-none'>";
+    /*
+    $page .=
+      "<div class='flex justify-between'>
+      <div class='inline-flex rounded-lg shadow-sm'>
+        <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:bg-gray-400 dark:focus:text-white'>
+          Aujoud'hui
+        </button>
+        <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:bg-gray-400 dark:focus:text-white'>
+          Cette Semaine
+        </button>
+    </div>";
+    $page .= CineTechHtmlElement::buttonScrollX('film-view');
+    $page .= " </div>";
+
+*/
+    $arguments['synergies'] = 'films';
+    $options = ['view' => true, 'method' => 'buttonSwitch', 'arguments' => ['idElement' => 'film-view', 'selectedMenu' => 'Tendances']];
+    $page .=  CineTechHtmlElement::contentScrollX($object->results, "Les films tendances", $arguments, 'film-view', 'elementScrollX', [], $options, 'w-full');
+    //   $page .= "<article id='film-view' class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
+
+    /*
     foreach ($object->results as $iemMovie) :
       $title = isset($iemMovie->original_title) ? $iemMovie->original_title : $iemMovie->name;
       $date = isset($iemMovie->release_date) ? $iemMovie->release_date : "N/A";
@@ -176,7 +280,7 @@ class HomeTemplate extends HttpRequest
                 src='./assets/images/placeholder.png'
                 data-src='" . $srcImage . $iemMovie->backdrop_path . "'
                 loading='lazy'
-                class='rounded-3xl justify-center h-[225px] w-[150px] grid object-cover'
+                class='shadow-md rounded-3xl justify-center h-[225px] w-[150px] grid object-cover'
                 alt='{$title}'
                 />   
               
@@ -196,23 +300,54 @@ class HomeTemplate extends HttpRequest
         </div>";
 
     endforeach;
+*/
+    /* The above code is concatenating the results of a method call to the `` variable. The method
+   `CineTechHtmlElement::elementScrollX()` is being called with the parameter `->results`,
+   and the result of this method call is being appended to the existing value of the ``
+   variable. */
+    //    $page .= CineTechHtmlElement::elementScrollX($object->results, 'films');
+    //  $page .= "</article>";
+    //$page .= "</section>";
 
+
+    $page .= "<article class='bg-gray-100 flex-col max-w-none'>";
+    $imageStatic = self::requestGZ('/api/g/images');
+    $page .= "<img class='-z-10 rounded-3xl opacity-75 object-cover w-full' src={$imageStatic} />";
     $page .= "</article>";
-    $page .= "</section>";
+
 
     /*
     $resultMovieClip = self::requestGZ('api/movie/videos');
     $objectSeriesMovieClip = json_decode($resultMovieClip);
     var_dump($objectSeriesMovieClip);
 */
-    $resultSeries = self::requestGZ('api/tv/series/lists/airing_today');
+    $resultSeries = self::requestGZ('/api/tv/series/lists/airing_today');
+
+    if (!$resultSeries) return false; // Error Request
+
+    if (!$resultSeries) return false;
+
     $objectSeries = json_decode($resultSeries);
+    /*
     $page .= "<section class='bg-gray-100 flex-col gap-x-5 max-w-none px-2'>";
 
     $page .= "<h2 class='text-base md:text-2xl'>Les Séries TV du jour</h2>";
+    $page .=
+      "<div class='flex justify-between'>
+      <div class='inline-flex rounded-lg shadow-sm'>
+        <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:bg-gray-400 dark:focus:text-white'>
+          Aujoud'hui
+        </button>
+        <button type='button' class='py-1 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-full first:ms-0 last:rounded-e-full text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-50 dark:border-gray-700 dark:text-blue-900 dark:hover:bg-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:bg-gray-400 dark:focus:text-white'>
+          Cette Semaine
+        </button>
+    </div>";
+    $page .= CineTechHtmlElement::buttonScrollX('series-view');
+    $page .= " </div>";
+*/
 
-    $page .= "<article class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
-
+    //   $page .= "<article id='series-view' class='flex flex-row gap-x-5 justify-start items-center overflow-x-auto my-2 py-2'>";
+    /*
     foreach ($objectSeries->results as $iemMovie) :
       $title = isset($iemMovie->original_title) ? $iemMovie->original_title : $iemMovie->name;
       $date = isset($iemMovie->release_date) ? $iemMovie->release_date : "N/A";
@@ -244,10 +379,20 @@ class HomeTemplate extends HttpRequest
         </div>";
 
     endforeach;
+*/
+    //   $page .= CineTechHtmlElement::elementScrollX($objectSeries->results, 'series');
+    //    $page .= "</article>";
+    //   $page .= "</section>";
+    $arguments['synergies'] = 'series';
+    $options = ['view' => true, 'method' => 'buttonSwitch', 'arguments' => ['idElement' => 'series-view-home', 'selectedMenu' => 'Populaires']];
+    $page .=  CineTechHtmlElement::contentScrollX($objectSeries->results, "Les Séries TV", $arguments, 'series-view-home', 'elementScrollX', [], $options, 'w-full');
 
+
+    $page .= "<article class='bg-gray-100 flex-col max-w-none'>";
+    $imageStatic1 = self::requestGZ('/api/g/images');
+    $page .= "<img class='-z-10 rounded-3xl opacity-75 object-cover w-full' src={$imageStatic1} />";
     $page .= "</article>";
-    $page .= "</section>";
 
-    echo $page;
+    return $page;
   }
 }
